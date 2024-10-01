@@ -1,0 +1,31 @@
+.section-menu .background .left
+{
+    height: 100%;
+    width: 40%;
+}
+
+.section-menu .background .left h1
+{
+    font-size: 100px;
+    margin: 100px 0px 10px 30px;
+    cursor: default;
+}
+
+.section-menu .background .left h3
+{
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0px 0px 0px 40px;
+    cursor: default;
+}
+
+.section-menu .background .right
+{
+    height: 100%;
+    width: 60%;
+}
+.section-menu .background .right img
+{
+    margin: 253px 100px 0px 100px;
+}
+

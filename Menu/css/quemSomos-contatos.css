@@ -1,0 +1,31 @@
+.section-menu .background
+{
+    align-items: center;
+    justify-content: center;
+}
+.section-menu .background .background-text
+{
+    position: absolute;
+    background-color: rgb(227, 236, 241, 0.9);
+    border-radius: 20px;
+    height: 70%;
+    width: 80%;
+    
+}
+
+.section-menu .background .background-text h1
+{
+    font-size: 40px;
+    margin: 20px 0px 15px 30px;
+    cursor: default;
+}
+
+.section-menu .background .background-text i
+{
+    display: flex;
+    margin: 0px 50px 20px 30px;
+    width: 90%;
+    text-decoration: none;
+    font-size: 25px;
+    cursor: default;
+}
