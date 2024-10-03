@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contatos</title>
-    <link rel="stylesheet" href="./css/quemSomos-contatos.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="../Assets/css/bootstrap-icons.css">
     <link rel="stylesheet" href="../Assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,31 +26,36 @@
                 <a href="cadastro.html">
                     <button type="button" class="cadastro">Sign In</button>
                 </a>
-                <a href="login.html">
-                    <button type="button" class="login"> Login In</button>
-                </a>
-                
             </div>
         </div>
     </nav>
+
     <section class="section-menu">
         <div class="background">
-            <img src="../../images/help-desk-icon.png" alt="fundo quem somos" height="100%" width="100%">
-            <div class="background-text">
-                <h1>Contatos </h1>
-                <i>
-                    Você é novo por aqui? Está interessado nos nossos serviços? É simples! <br>
-                    Basta entrar em contato apartir desse número (84) 9 8888 8888, funcionamos em horário comercial:<br>
-                    <br>
-                    07:00 às 17:00 - Segunda a Sexta <br>
-                    12:00 às 14:00 - Sábados e Domingos <br>
-                </i>
-                <i> Ou você pode entrar em contato diretamente pelo nosso e-mail 
-                    <div style="margin-left: 10px; color: blue;">contatos@callify.net</div>
-                </i>
+            <div class="left">
+                <img src="../images/menuLogin.png" alt="Menu principal" width="1000px" height="700px">
             </div>
+            <div class="right">
+                <div class="r-up">
+                    <h2>Login</h2>
+                    <div class="login">
+                        <i>Username</i>
+                        <input type="text" placeholder="Username">
+                    </div>
+                    <div class="password">
+                        <i>Password</i>
+                        <input type="password" name="Password">
+                    </div>                  
+                </div>
+                <div class="r-down">
+                    <button>Entrar</button>
+                    <a href=""><i>Esqueceu a senha?</i></a>
+                </div>
+
+            </div>
+
         </div>
     </section>
-    
+
 </body>
 </html>
