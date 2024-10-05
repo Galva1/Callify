@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quem Somos</title>
-    <link rel="stylesheet" href="./css/quemSomos-contatos.css">
-    <link rel="stylesheet" href="../Assets/css/bootstrap-icons.css">
-    <link rel="stylesheet" href="../Assets/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quemSomos-contatos.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gudea:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -17,25 +16,24 @@
         <div class="navbar-content">
             <div class="left">
                 <ul class="list">
-                    <li><a href="menu.html">Home</a></li>
-                    <li><a href="quemSomos.html">Quem Somos</a></li>
-                    <li><a href="contatos.html">Contatos</a></li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('quemSomos') }}">Quem Somos</a></li>
+                    <li><a href="{{ url_for('contatos') }}">Contatos</a></li>
                 </ul>
             </div>
             <div class="right">
-                <a href="cadastro.html">
+                <a href="{{ url_for('cadastro') }}">
                     <button type="button" class="cadastro">Sign In</button>
                 </a>
-                <a href="login.html">
+                <a href="{{ url_for('login') }}">
                     <button type="button" class="login"> Login In</button>
                 </a>
-                
             </div>
         </div>
     </nav>
     <section class="section-menu">
         <div class="background">
-            <img src="../../images/help-desk-icon.png" alt="fundo quem somos" height="100%" width="100%">
+            <img src="/static/images/help-desk-icon.png" alt="fundo quem somos" height="100%" width="100%">
             <div class="background-text">
                 <h1>Quem Somos </h1>
                 <i>
