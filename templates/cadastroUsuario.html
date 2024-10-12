@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Usuario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastroUsuario.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gudea:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar-menu">
+    <a class="titulo-menu" style="margin-left: 10px;" href="#">Callify</a>
+    <div class="navbar-content">
+        <div class="left">
+            <ul class="list">
+                <li><a href="#">Chamados</a></li>
+                <li><a href="#">Usuarios</a></li>
+            </ul>
+        </div>
+        <div class="right">
+            <p>USUARIO</p>
+        </div>
+    </div>
+    </nav>
+    <section class="menu-prim">
+        <div class="menu-secundario">
+            <div class="menu-secundario-top">
+                <span>Matricula</span>
+                <input type="text" name="matricula">
+                <span>Nome</span>
+                <input type="text" name="nome">
+                <span>Senha</span>
+                <input type="password" name="senha">
+                <span>Confirmar a senha</span>
+                <input type="password" name="senha_confirmacao">
+            </div>
+            <div class="menu-secundario-bot">
+                <span>Cargo</span>
+                <input type="text" name="cargo" id="cargo">
+                <button onclick="cadastrarUsuario()">Salvar</button>
+                <button onclick="excluirUsuario()">Excluir</button>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/cadastroUsuario.js"></script>
+</body>
+</html>

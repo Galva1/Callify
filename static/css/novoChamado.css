@@ -1,0 +1,54 @@
+.hidden{
+    display: none;
+}
+
+.menu-top{
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    width: 100%;
+    background-color: white;
+    box-sizing: border-box;
+    margin-top: 50px;
+}
+.menu-top p{
+    font-size: 25px;
+    padding-left: 540px;
+    margin: 5px 0 10px 0;
+}
+.menu-top #titulo{
+    height: 30px;
+    width: 800px;
+    align-self: center;
+    
+}
+.menu-top #descricao{
+    height: 300px;
+    width: 800px;
+    align-self: center;
+}
+.menu-bot{
+    display: flex;
+}
+.menu-bot .left{
+    margin-left: 540px;
+    font-size: 20px;
+}
+
+.menu-bot #matriculaDiv{
+    margin-left: 10px;
+    font-size: 20px;
+    margin-right: 40px;
+    margin-left: 20px;
+}
+.menu-bot #matriculaDiv input{
+    height: 20px;
+    width: 200px;
+}
+
+.menu-bot button{
+    height: 50px;
+    width: 100px;
+    margin-left: 20px;
+
+}

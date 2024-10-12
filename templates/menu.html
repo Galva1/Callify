@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-icons.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gudea:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar-menu">
+    <a class="titulo-menu" style="margin-left: 10px;" href="#">Callify</a>
+    <div class="navbar-content">
+        <div class="left">
+            <ul class="list">
+                {% if cargo == 'admin' %}
+                <li><a href="{{ url_for('menu') }}">Chamados</a></li>
+                <li><a href="{{ url_for('cadastroUsuario') }}">Usuarios</a></li>
+                {% endif %}
+                {% if cargo == 'usuario' %}
+                <li><a href="{{ url_for('menu') }}">Meus chamados</a></li>
+                <li><a href="">Novo chamado</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="right">
+            <p>{{ cargo }}</p>
+            <p>-</p>
+            <p>{{ usuario }}</p>
+        </div>
+    </div>
+    </nav>
+    {% if cargo == 'admin' %}
+        <section class="d-admin">
+            <nav class="menu-top">
+                <div class="sec1">
+                    <div class="sec4-top"><span>Operador</span></div>
+                    <div class="sec4-bot">
+                        <input type="text" name="operador" id="operador">
+                    </div>
+                </div>
+                <div class="sec2">
+                    <div class="sec2-top"><span>Periodo</span></div>
+                    <div class="sec2-bot">
+                        <input type="date" name="start-date" id="start-date">
+                        <span>até</span>
+                        <input type="date" name="end-date" id="end-date">
+                    </div>
+                    
+                    
+                </div>
+                <div class="sec3">
+                    <div class="sec3-top"><span>Situação</span></div>
+                    <input type="text" name="situacao" id="situacao">
+                    <div class="sec3-bot">
+                    </div>
+                </div>
+                <div class="sec4">
+                    <div class="sec4-top"><span>Protocolo</span></div>
+                    <div class="sec4-bot">
+                        <input type="text" name="protocolo" id="protocolo">
+                        <input type="button" value="Buscar" id="buscar">
+                    </div>
+                </div>
+
+            </nav>
+            <nav class="menu-chamados">
+        
+            </nav>
+        </section>
+    {% endif %}
+
+    {% if cargo == usuario %}
+        <section class="d-usuario">
+            
+        </section>
+    {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+.d-admin{
+    height: 90%;
+    width: 100%;
+}
+
+.menu-top{
+    display: flex;
+    height:15%;
+    width: 100%;
+    background-color: white;
+    border-bottom: 2px solid rgb(0, 0, 0, 0.2);
+}
+
+.menu-chamados{
+    height: 80%;
+    width: 100%;
+    background-color: white;
+}
+
+.sec1, .sec2, .sec3, .sec4{
+    display: block;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    padding-top: 20px;
+    background-color: aqua;
+    padding-left: 10px;
+}
+
+.menu-top input{
+    height: 40px;
+    width: 200px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.sec1
+{ 
+    padding-left: 20px;
+}
+
+.sec2 span{
+    margin: 15px 10px 0px 10px;
+}
+
+.sec2 .sec2-bot{
+    display: flex;
+}
+
+.sec3
+{
+    padding-left: 100px;
+}
+
+.sec4-bot{
+    display: flex;
+    flex-direction: column;
+}
+
+#buscar{
+    align-self: self-end;
+    width: 100px;
+    margin: 0 20px 0 0;
+    position: absolute;
+}
+
+.navbar-content .right p{
+    font-size: 25px;
+    margin: 10px 10px 0 0;
+}
+
+
+/* ------------------- Visão do Usuário ------------------------- */
+.d-usuario{
+    height: 90%;
+    width: 100%;
+}
