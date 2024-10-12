@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo chamado</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/novoChamado.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}"> -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/novoChamado.css')}}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-icons.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gudea:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/novoChamado.js"></script>
+</head>
+<body>
+    <nav class="navbar-menu">
+        <a class="titulo-menu" style="margin-left: 10px;" href="#">Callify</a>
+        <div class="navbar-content">
+            <div class="left">
+                <ul class="list">
+                    {% if cargo == 'usuario' %}
+                    <li><a href="{{ url_for('menu') }}">Meus chamados</a></li>
+                    <li><a href="">Novo chamado</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="right">
+                <p>{{ cargo }}</p>
+                <p>-</p>
+                <p>{{ usuario }}</p>
+            </div>
+        </div>
+    </nav>
+    <div class="menu-top">
+        <p>Titulo</p>
+        <input type="text" name="titulo" id="titulo">
+        <p>Descrição</p>
+        <input type="text" name="descricao" id="descricao">
+    </div>
+    <div class="menu-bot">
+        <div class="left">
+            <p>O chamado é para você?</p>
+            <input type="radio" name="chamado" value="sim" class="chamado" checked> Sim
+            <input type="radio" name="chamado" value="nao" class="chamado"> Não
+        </div>
+        <div id="matriculaDiv" class="hidden">
+            <p>Matricula do requerente:</p>
+            <input type="text" id="matriculaInput">
+        </div>
+        <button name="enviar">Enviar</button>
+    </div>
+
+</body>
+</html>
