@@ -114,6 +114,11 @@ a button:hover
     background-color: #a89a47;
 }
 
+.navbar-content .right p{
+    font-size: 25px;
+    margin: 20px 10px 0 0;
+}
+
 /* CARACTERISTICAS SECTION */
 
 .section-menu

@@ -17,12 +17,17 @@
     <div class="navbar-content">
         <div class="left">
             <ul class="list">
-                <li><a href="#">Chamados</a></li>
-                <li><a href="#">Usuarios</a></li>
+                <li><a href="{{ url_for('menu') }}">Chamados</a></li>
+                <li><a href="{{ url_for('cadastroUsuario') }}">Usuarios</a></li>
             </ul>
         </div>
         <div class="right">
-            <p>USUARIO</p>
+            <form action="{{ url_for('logout') }}" method="get">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+            <p>{{ cargo }}</p>
+            <p>-</p>
+            <p>{{ user_id }}</p>   
         </div>
     </div>
     </nav>
@@ -41,11 +46,22 @@
             <div class="menu-secundario-bot">
                 <span>Cargo</span>
                 <input type="text" name="cargo" id="cargo">
-                <button onclick="cadastrarUsuario()">Salvar</button>
+                <button onclick="cadastrarUsuario()" name="salvar">Salvar</button>
                 <button onclick="excluirUsuario()">Excluir</button>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" style="margin-top: 20px;">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
             </div>
+            
         </div>
+
     </section>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/static/js/cadastroUsuario.js"></script>
 </body>

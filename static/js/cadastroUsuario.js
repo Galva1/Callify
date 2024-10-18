@@ -1,3 +1,10 @@
+$(document).ready(function(){
+    $('button[name="salvar"]').click(function(){
+        $('.menu-secundario-top input').val('');
+        $('.menu-secundario-bot input').val('');
+    });
+});
+
 function cadastrarUsuario(){
 
     const matricula = $('input[name="matricula"]').val();
@@ -18,12 +25,23 @@ function cadastrarUsuario(){
         contentType: 'application/json',
         data: JSON.stringify({matricula, nome, senha, cargo}),
         sucess: function(response){
-            alert(response.message);
+            showMessage(response.message, 'success');
+            $('input').val('');
         },
-        error: function(xhr){
-            console.error('Erro:', xhr.responseText);
+        error: function(response){
+            var errorMessage = response.responseJSON ? response.responseJSON.message : "Ocorreu um erro.";
+            showMessage(errorMessage, 'danger');
         }
     });
+}
+
+function showMessage(message, type) {
+    const alertBox = $('<div>').addClass(`alert alert-${type}`).text(message);
+    $('.menu-secundario-bot').append(alertBox);
+
+    setTimeout(() => {
+        alertBox.fadeOut(400, function() { $(this).remove(); });
+    }, 3000);
 }
 
 function excluirUsuario(){

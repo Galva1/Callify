@@ -24,14 +24,17 @@
                 {% endif %}
                 {% if cargo == 'usuario' %}
                 <li><a href="{{ url_for('menu') }}">Meus chamados</a></li>
-                <li><a href="">Novo chamado</a></li>
+                <li><a href="{{ url_for('novoChamado') }}">Novo chamado</a></li>
                 {% endif %}
             </ul>
         </div>
         <div class="right">
+            <form action="{{ url_for('logout') }}" method="get">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
             <p>{{ cargo }}</p>
             <p>-</p>
-            <p>{{ usuario }}</p>
+            <p>{{ usuario }}</p>   
         </div>
     </div>
     </nav>

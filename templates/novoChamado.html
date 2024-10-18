@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novo chamado</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/css/novoChamado.css">
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}"> -->
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/novoChamado.css')}}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/novoChamado.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-icons.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gudea:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/static/js/novoChamado.js"></script>
+v
 </head>
 <body>
     <nav class="navbar-menu">
@@ -23,11 +20,14 @@
                 <ul class="list">
                     {% if cargo == 'usuario' %}
                     <li><a href="{{ url_for('menu') }}">Meus chamados</a></li>
-                    <li><a href="">Novo chamado</a></li>
+                    <li><a href="{{ url_for('novoChamado') }}">Novo chamado</a></li>
                     {% endif %}
                 </ul>
             </div>
             <div class="right">
+                <form action="{{ url_for('logout') }}" method="get">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
                 <p>{{ cargo }}</p>
                 <p>-</p>
                 <p>{{ usuario }}</p>
@@ -48,10 +48,12 @@
         </div>
         <div id="matriculaDiv" class="hidden">
             <p>Matricula do requerente:</p>
-            <input type="text" id="matriculaInput">
+            <input type="text" name="matricula" id="matriculaInput">
         </div>
-        <button name="enviar">Enviar</button>
+        <button name="enviar" onclick="cadastrarChamado()">Enviar</button>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/novoChamado.js"></script>
+    <script src="/static/js/cadastrarChamado.js"></script>
 </body>
 </html>

@@ -23,7 +23,7 @@
     height: 100%;
     width: 100%;
     padding-top: 20px;
-    background-color: aqua;
+    background-color: white;
     padding-left: 10px;
 }
 
@@ -62,11 +62,6 @@
     width: 100px;
     margin: 0 20px 0 0;
     position: absolute;
-}
-
-.navbar-content .right p{
-    font-size: 25px;
-    margin: 10px 10px 0 0;
 }
 
 
