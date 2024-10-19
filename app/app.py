@@ -121,7 +121,7 @@ def menu():
         parametros.append(usuario)
 
     elif cargo == 'operador':
-        query += 'AND (idOperador = ?) or (idStatus = 1 and idOperador is null)'
+        query += 'AND (Chamados.idOperador = ?) or (Chamados.idStatus = 1 and Chamados.idOperador is null)'
         parametros.append(idUsuario)
 
 
@@ -129,13 +129,16 @@ def menu():
 
     data = cursor.fetchall()
 
-    return render_template('menu.html',usuario=usuario, cargo=cargo, qt_chamados=len(data), campos=data, status_options=status_options)
+    novos = [chamado for chamado in data if chamado[3] == 1]
+    fazendo = [chamado for chamado in data if chamado[3] == 2]
+    finalizado = [chamado for chamado in data if chamado[3] in (3,4)]
+
+    return render_template('menu.html',usuario=usuario, cargo=cargo, qt_chamados=len(data), campos=data, status_options=status_options, novos=novos, fazendo=fazendo, finalizado=finalizado)
 
 @app.route('/cadastroUsuario/')
 @requer_login
 def cadastroUsuario():
     return render_template('cadastroUsuario.html')
-
 
 @app.route('/cadastrar', methods=['POST'])
 @requer_login

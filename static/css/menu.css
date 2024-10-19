@@ -55,15 +55,6 @@
     padding-left: 10px;
 }
 
-/* ------------------- Visão do Usuário ------------------------- */
-.d-usuario{
-    height: 90%;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 .card {
     display: flex;
     flex-direction: column;
@@ -108,4 +99,62 @@
 .card h3{
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* ------------------- Visão do Usuário ------------------------- */
+.d-usuario{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+
+/* ------------------- Visão do Operador ------------------------- */
+
+.d-operador{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.d-operador .novo{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    overflow-x: hidden;
+    align-items: center;
+    height: 100%;
+    width: 32%;
+    background-color: rgb(233, 248, 255);
+}
+
+.d-operador .fazendo{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    overflow-x: hidden;
+    align-items: center;
+    height: 100%;
+    width: 32%;
+    background-color: rgb(233, 248, 255);
+}
+
+.d-operador .finalizado{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    overflow-x: hidden;
+    align-items: center;
+    height: 100%;
+    width: 32%;
+    background-color: rgb(233, 248, 255);
+}
+
+.d-operador h2{
+    position: relative;
 }

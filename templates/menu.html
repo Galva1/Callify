@@ -26,6 +26,9 @@
                 <li><a href="{{ url_for('menu') }}">Meus chamados</a></li>
                 <li><a href="{{ url_for('novoChamado') }}">Novo chamado</a></li>
                 {% endif %}
+                {% if cargo == 'operador' %}
+                <li><a href="{{ url_for('menu') }}">Chamados</a></li>
+                {% endif %}
             </ul>
         </div>
         <div class="right">
@@ -131,6 +134,85 @@
     {% endif %}
 
     {% if cargo == 'operador' %}
+        <section class="d-operador">
+            <div class="novo">
+                <h2>Novos</h2>
+                {% for chamado in novos %}
+                <a href="">
+                    <div class="card">
+                        <div class="head">
+                            <div class="head-left">
+                                <p>Status: {{ chamado[13] }}</p>
+                            </div>
+                            <div class="head-right">
+                                <div class="circle {%if chamado[3] == 1%} cor-cinza {%elif chamado[3] == 2%} cor-amarelo {%elif chamado[3] == 3%} cor-verde {%elif chamado[3] == 4%} cor-vermelho {% endif %}"></div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <h3 style="margin-bottom: 5px;">Título: {{ chamado[1] }}</h3>
+                            <p>Responsável: {{ chamado[12] }}</p>
+                            <p>Operador: {{ chamado[10] if chamado[10] else 'Não atribuido' }}</p>
+                            <p>Urgência: {{ chamado[11] }}</p>
+                            <p>Criado em: {{ chamado[8] }}</p>
+                        </div>
+                        
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <div class="fazendo">
+                <h2>Fazendo</h2>
+                {% for chamado in fazendo %}
+                <a href="">
+                    <div class="card">
+                        <div class="head">
+                            <div class="head-left">
+                                <p>Status: {{ chamado[13] }}</p>
+                            </div>
+                            <div class="head-right">
+                                <div class="circle {%if chamado[3] == 1%} cor-cinza {%elif chamado[3] == 2%} cor-amarelo {%elif chamado[3] == 3%} cor-verde {%elif chamado[3] == 4%} cor-vermelho {% endif %}"></div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <h3 style="margin-bottom: 5px;">Título: {{ chamado[1] }}</h3>
+                            <p>Responsável: {{ chamado[12] }}</p>
+                            <p>Operador: {{ chamado[10] if chamado[10] else 'Não atribuido' }}</p>
+                            <p>Urgência: {{ chamado[11] }}</p>
+                            <p>Criado em: {{ chamado[8] }}</p>
+                        </div>
+                        
+                    </div>
+                </a>
+                {% endfor %}
+
+            </div>
+            <div class="finalizado">
+                <h2>Finalizado</h2>
+                {% for chamado in finalizado %}
+                <a href="">
+                    <div class="card">
+                        <div class="head">
+                            <div class="head-left">
+                                <p>Status: {{ chamado[13] }}</p>
+                            </div>
+                            <div class="head-right">
+                                <div class="circle {%if chamado[3] == 1%} cor-cinza {%elif chamado[3] == 2%} cor-amarelo {%elif chamado[3] == 3%} cor-verde {%elif chamado[3] == 4%} cor-vermelho {% endif %}"></div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <h3 style="margin-bottom: 5px;">Título: {{ chamado[1] }}</h3>
+                            <p>Responsável: {{ chamado[12] }}</p>
+                            <p>Operador: {{ chamado[10] if chamado[10] else 'Não atribuido' }}</p>
+                            <p>Urgência: {{ chamado[11] }}</p>
+                            <p>Criado em: {{ chamado[8] }}</p>
+                        </div>
+                        
+                    </div>
+                </a>
+                {% endfor %}
+
+            </div>
+        </section>
     {% endif %}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
