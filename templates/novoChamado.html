@@ -10,11 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gudea:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-v
 </head>
 <body>
     <nav class="navbar-menu">
-        <a class="titulo-menu" style="margin-left: 10px;" href="#">Callify</a>
+        <a class="titulo-menu" style="margin-left: 10px;" href="{{ url_for('menu') }}">Callify</a>
         <div class="navbar-content">
             <div class="left">
                 <ul class="list">
@@ -30,7 +29,7 @@ v
                 </form>
                 <p>{{ cargo }}</p>
                 <p>-</p>
-                <p>{{ usuario }}</p>
+                <p>{{ matricula }}</p>
             </div>
         </div>
     </nav>
@@ -53,7 +52,6 @@ v
         <button name="enviar" onclick="cadastrarChamado()">Enviar</button>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/static/js/novoChamado.js"></script>
     <script src="/static/js/cadastrarChamado.js"></script>
 </body>
 </html>

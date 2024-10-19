@@ -27,7 +27,7 @@
             </form>
             <p>{{ cargo }}</p>
             <p>-</p>
-            <p>{{ user_id }}</p>   
+            <p>{{ matricula }}</p>   
         </div>
     </div>
     </nav>
@@ -45,7 +45,12 @@
             </div>
             <div class="menu-secundario-bot">
                 <span>Cargo</span>
-                <input type="text" name="cargo" id="cargo">
+                <select name="situacao" id="situacao">
+                    <option value="">Selecione uma situação</option>
+                    {% for cargo in cargo_options %}
+                        <option value="{{ status.idStatus }}">{{ status.nm_status }}</option>
+                    {% endfor %}
+                </select>
                 <button onclick="cadastrarUsuario()" name="salvar">Salvar</button>
                 <button onclick="excluirUsuario()">Excluir</button>
 

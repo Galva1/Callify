@@ -140,3 +140,19 @@ a button:hover
     background-color: #e3ecf1;
 
 }
+
+.cor-cinza{
+    background-color: rgb(116, 116, 116);
+}
+
+.cor-verde{
+    background-color: rgb(80, 196, 105);
+}
+
+.cor-amarelo{
+    background-color: rgb(255, 252, 88);
+}
+
+.cor-vermelho{
+    background-color: rgb(177, 70, 70);
+}

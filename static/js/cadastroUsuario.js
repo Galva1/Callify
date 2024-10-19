@@ -53,7 +53,8 @@ function excluirUsuario(){
         contentType: 'application/json',
         data: JSON.stringify({ matricula }),
         sucess: function(response){
-            alert(response.message)
+            alert(response.message);
+            $('input').val('');
         },
         error: function(xhr){
             console.error('Erro:',xhr.responseText);
