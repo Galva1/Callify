@@ -101,11 +101,11 @@ def menu():
     status_options = cursor.fetchall()
 
     query = """
-        SELECT idChamado, titulo, descricao, Chamados.idStatus, observacao, 
+        SELECT Chamados.idChamado, titulo, descricao, Chamados.idStatus, observacao, 
                Chamados.idUrgencia, matriculaResponsavel, idOperador, 
                CONVERT(DATE, Chamados.dt_criacao), 
                CONVERT(DATE, dt_finalizado), u1.nm_usuario, 
-               nm_urgencia, u2.nm_usuario, Status.nm_status 
+               nm_urgencia, u2.nm_usuario, Status.nm_status, u1.matricula
         FROM Chamados 
         LEFT JOIN Usuario u1 ON u1.idUsuario = Chamados.idOperador 
         LEFT JOIN Status ON Status.idStatus = Chamados.idStatus 
@@ -283,6 +283,27 @@ def buscar():
 
     return render_template('menu.html', campos=data, status_options=status_options)
 
+@app.route('/pegarChamado', methods=['POST'])
+def pegarChamado():
+    data = request.get_json()
+    idchamado = data.get('idchamado')
+    matricula = data.get('matricula')
+    
+    cursor = conn.cursor()
+    cursor.execute("SELECT idUsuario FROM Usuario WHERE matricula = ?", (matricula,))
+    idUsuario = cursor.fetchone()
+    print('teste1')
+    print(idUsuario[0])
+    print(idchamado)
+    try:
+        cursor.execute("UPDATE Chamados SET idOperador = ?, idStatus = 2 WHERE idChamado = ?",(idUsuario[0], idchamado,))
+        conn.commit()
+        print('teste2')
+        return jsonify({"message": "Chamado atribuido com sucesso!"}), 200
+    except pyodbc.Error as e:
+        return jsonify({"message": f"Erro ao atribuir chamado! {str(e)}"}), 500
+    finally:
+        cursor.close()
 
 if __name__ == '__main__':
     app.run(debug= True)

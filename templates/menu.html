@@ -42,7 +42,7 @@
     </div>
     </nav>
     {% if cargo == 'admin' %}
-        <section class="d-admin">
+        <section class="d-admin exibirDisplay" name="interface">
             <nav class="menu-top">
             <form action="/buscar" method="GET">
                 <div class="sec1">
@@ -81,8 +81,17 @@
             </nav>
             <nav class="menu-chamados">
                 {% for chamado in campos %}
-                    <a href="">
-                        <div class="card">
+                    <div class="cardInterface" 
+                    data-idChamado="{{ chamado[0] }}"
+                    data-titulo="{{ chamado[1] }}"
+                    data-descricao="{{ chamado[2] }}"
+                    data-responsavel="{{ chamado[12] }}"
+                    data-operador="{{ chamado[10] }}"
+                    data-urgencia="{{ chamado[11] }}"
+                    data-observacao="{{ chamado[4] }}"
+                    data-criado="{{ chamado[8] }}"
+                    data-status="{{ chamado[13] }}">
+                        <div class="card" id="card" onclick="buscarInformacoes(this), abrirDisplay()">
                             <div class="head">
                                 <div class="head-left">
                                     <p>Status: {{ chamado[13] }}</p>
@@ -100,17 +109,26 @@
                             </div>
                             
                         </div>
-                    </a>
+                    </div>
                 {% endfor %}
             </nav>
         </section>
     {% endif %}
 
     {% if cargo == 'usuario' %}
-        <section class="d-usuario">
+        <section class="d-usuario exibirDisplay" name="interface">
             {% for chamado in campos %}
-            <a href="">
-                <div class="card">
+            <div class="cardInterface"
+                data-idchamado="{{ chamado[0] }}"
+                data-titulo="{{ chamado[1] }}"
+                data-descricao="{{ chamado[2] }}"
+                data-responsavel="{{ chamado[12] }}"
+                data-operador="{{ chamado[10] }}"
+                data-urgencia="{{ chamado[11] }}"
+                data-observacao="{{ chamado[4] }}"
+                data-criado="{{ chamado[8] }}"
+                data-status="{{ chamado[13] }}">
+                <div class="card" id="card" onclick="buscarInformacoes(this), abrirDisplay()">
                     <div class="head">
                         <div class="head-left">
                             <p>Status: {{ chamado[13] }}</p>
@@ -128,18 +146,27 @@
                     </div>
                     
                 </div>
-            </a>
+            </div>
             {% endfor %}
         </section>
     {% endif %}
 
     {% if cargo == 'operador' %}
-        <section class="d-operador">
+        <section class="d-operador exibirDisplay" name="interface">
             <div class="novo">
                 <h2>Novos</h2>
                 {% for chamado in novos %}
-                <a href="">
-                    <div class="card">
+                <div class="cardInterface"
+                    data-idChamado="{{ chamado[0] }}"
+                    data-titulo="{{ chamado[1] }}"
+                    data-descricao="{{ chamado[2] }}"
+                    data-responsavel="{{ chamado[12] }}"
+                    data-operador="{{ chamado[10] }}"
+                    data-urgencia="{{ chamado[11] }}"
+                    data-observacao="{{ chamado[4] }}"
+                    data-criado="{{ chamado[8] }}"
+                    data-status="{{ chamado[13] }}">
+                    <div class="card" id="card" onclick="buscarInformacoes(this), abrirDisplay()">
                         <div class="head">
                             <div class="head-left">
                                 <p>Status: {{ chamado[13] }}</p>
@@ -157,14 +184,23 @@
                         </div>
                         
                     </div>
-                </a>
+                </div>
                 {% endfor %}
             </div>
             <div class="fazendo">
                 <h2>Fazendo</h2>
                 {% for chamado in fazendo %}
-                <a href="">
-                    <div class="card">
+                <div class="cardInterface"
+                    data-idChamado="{{ chamado[0] }}"
+                    data-titulo="{{ chamado[1] }}"
+                    data-descricao="{{ chamado[2] }}"
+                    data-responsavel="{{ chamado[12] }}"
+                    data-operador="{{ chamado[10] }}"
+                    data-urgencia="{{ chamado[11] }}"
+                    data-observacao="{{ chamado[4] }}"
+                    data-criado="{{ chamado[8] }}"
+                    data-status="{{ chamado[13] }}">
+                    <div class="card" id="card" onclick="buscarInformacoes(this), abrirDisplay()">
                         <div class="head">
                             <div class="head-left">
                                 <p>Status: {{ chamado[13] }}</p>
@@ -182,15 +218,24 @@
                         </div>
                         
                     </div>
-                </a>
+                </div>
                 {% endfor %}
 
             </div>
             <div class="finalizado">
                 <h2>Finalizado</h2>
                 {% for chamado in finalizado %}
-                <a href="">
-                    <div class="card">
+                <div class="cardInterface"
+                    data-idChamado="{{ chamado[0] }}"
+                    data-titulo="{{ chamado[1] }}"
+                    data-descricao="{{ chamado[2] }}"
+                    data-responsavel="{{ chamado[12] }}"
+                    data-operador="{{ chamado[10] }}"
+                    data-urgencia="{{ chamado[11] }}"
+                    data-observacao="{{ chamado[4] }}"
+                    data-criado="{{ chamado[8] }}"
+                    data-status="{{ chamado[13] }}">
+                    <div class="card" id="card" onclick="buscarInformacoes(this), abrirDisplay()">
                         <div class="head">
                             <div class="head-left">
                                 <p>Status: {{ chamado[13] }}</p>
@@ -208,15 +253,55 @@
                         </div>
                         
                     </div>
-                </a>
+                </div>
                 {% endfor %}
 
             </div>
         </section>
     {% endif %}
 
+    <section class="d-card" style="display: none">
+        <div class="d-card-menu">
+            <div class="d-card-top">
+                <p>Titulo</p>
+                <input type="text" name="titulo" id="titulo">
+                <p>Descrição</p>
+                <textarea name="descricao" id="descricao"></textarea>
+            </div>
+            <div class="d-card-bot">
+                <div class="left">
+                    {% if cargo == 'admin' or cargo == 'usuario' %}
+                    <p>Status:</p> <span id="status"></span>
+                    <p>Responsável</p> <span id="responsavel"></span>
+                    <p>Observação</p> <span id="observacao"></span>
+                    <p>Urgência:</p> <span id="urgencia"></span>
+                    <p>Operador: </p> <span id="operador"></span>
+                    {% endif %}
+
+                    {% if cargo == 'operador' %}
+                    <p>Status:</p> <span id="status"></span>
+                    <p>Responsável</p> <span id="responsavel"></span>
+                    <p>Observação</p> <span id="observacao"></span>
+                    <p>Urgência:</p> <span id="urgencia"></span>
+                    {% endif %}
+
+                </div>
+                <div class="right">
+                    <button name="voltar" onclick="fecharDisplay()">Voltar</button>
+                    {% if cargo == 'operador' %}
+                            <button name="pegarChamado" onclick="pegarChamado()">Atribuir</button>
+                            <button name="soltarChamado">Desatribuir</button>
+                            <button name="finalizarChamado">Finalizar</button>
+                    {% endif %}
+                </div>
+            </div>
+            <p id="idchamado" name="idchamado" style="display: none;" data-matricula="{{ matricula }}"></p>
+        </div>
+        
+    </section>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/static/js/cadastrarChamado.js"></script>
+    <script src="/static/js/menu.js"></script>
 
 </body>
 </html>
