@@ -7,9 +7,10 @@ function abrirDisplay(){
 
 function fecharDisplay(){
     const interfaceSelecionada = $('section[name="interface"]');
-
+    location.reload();
     interfaceSelecionada.toggle();
     $('.d-card').hide();
+    
 }
 
 function buscarInformacoes(card){
@@ -30,7 +31,7 @@ function buscarInformacoes(card){
     $('#responsavel').text(responsavel);
     $('#status').text(status);
     $('#observacao').text(observacao);
-    $('#urgencia').text(status);
+    $('#urgencia').text(urgencia);
     $('#idchamado').text(idchamado);
 }
 
@@ -39,6 +40,42 @@ function pegarChamado(){
     const matricula = $('p[name="idchamado"]').data('matricula');
     $.ajax({
         url: '/pegarChamado',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({idchamado, matricula}),
+        sucess: function(response){
+            showMessage(response.message, 'success');
+        },
+        error: function(response){
+            var errorMessage = response.responseJSON ? response.responseJSON.message : "Ocorreu um erro.";
+            showMessage(errorMessage, 'danger');
+        }
+    });
+}
+
+function soltarChamado(){
+    const idchamado = $('p[name="idchamado"]').text();
+    const matricula = $('p[name="idchamado"]').data('matricula');
+    $.ajax({
+        url: '/soltarChamado',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({idchamado, matricula}),
+        sucess: function(response){
+            showMessage(response.message, 'success');
+        },
+        error: function(response){
+            var errorMessage = response.responseJSON ? response.responseJSON.message : "Ocorreu um erro.";
+            showMessage(errorMessage, 'danger');
+        }
+    });
+}
+
+function finalizarChamado(){
+    const idchamado = $('p[name="idchamado"]').text();
+    const matricula = $('p[name="idchamado"]').data('matricula');
+    $.ajax({
+        url: '/finalizarChamado',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({idchamado, matricula}),

@@ -11,7 +11,7 @@ app.secret_key = config.SECRET_KEY
 
 conn = pyodbc.connect(
     'DRIVER={SQL Server};'
-    'SERVER=DESKTOP-KVTDUEI\SQLEXPRESS;'
+    'SERVER=Galvs-Desktop\SQLEXPRESS;'
     'DATABASE=Callify;'
     'Trusted_Connection=yes;'
 )
@@ -136,12 +136,12 @@ def menu():
     return render_template('menu.html',usuario=usuario, cargo=cargo, qt_chamados=len(data), campos=data, status_options=status_options, novos=novos, fazendo=fazendo, finalizado=finalizado)
 
 @app.route('/cadastroUsuario/')
-@requer_login
+
 def cadastroUsuario():
     return render_template('cadastroUsuario.html')
 
 @app.route('/cadastrar', methods=['POST'])
-@requer_login
+
 def cadastrar_usuario():
 
     if request.method == 'POST':
@@ -172,6 +172,7 @@ def cadastrar_usuario():
     return(render_template('novoChamado.html'))
 
 @app.route('/excluir', methods=['POST'])
+@requer_login
 def excluir_usuario():
     data = request.get_json()
     matricula = data.get('matricula')
@@ -284,24 +285,79 @@ def buscar():
     return render_template('menu.html', campos=data, status_options=status_options)
 
 @app.route('/pegarChamado', methods=['POST'])
+@requer_login
 def pegarChamado():
+    data = request.get_json()
+    idchamado = data.get('idchamado')
+    matricula = data.get('matricula')
+
+    cursor = conn.cursor()
+    cursor.execute("SELECT idStatus FROM Chamados WHERE idChamado = ?", (idchamado,))
+    idStatus = cursor.fetchone()
+
+    if idStatus == 3:
+        return jsonify({"message": "Não é possível se atribuir a um chamado concluido."}), 400
+    
+    cursor.execute("SELECT idUsuario FROM Usuario WHERE matricula = ?", (matricula,))
+    idUsuario = cursor.fetchone()
+    
+    try:
+        cursor.execute("UPDATE Chamados SET idOperador = ?, idStatus = 2 WHERE idChamado = ?",(idUsuario[0], idchamado,))
+        conn.commit()
+
+        return jsonify({"message": "Chamado atribuido com sucesso!"}), 200
+    except pyodbc.Error as e:
+        return jsonify({"message": f"Erro ao atribuir chamado! {str(e)}"}), 500
+    finally:
+        cursor.close()
+
+@app.route('/soltarChamado', methods=['POST'])
+@requer_login
+def soltarChamado():
+    data = request.get_json()
+    idchamado = data.get('idchamado')
+    matricula = data.get('matricula')
+
+    cursor = conn.cursor()
+    cursor.execute("SELECT idStatus FROM Chamados WHERE idChamado = ?", (idchamado,))
+    idStatus = cursor.fetchone()
+
+    if idStatus == 3:
+        return jsonify({"message": "Não é possível se desatribuir de um chamado concluido."}), 400
+    
+    try:
+        cursor.execute("UPDATE Chamados SET idOperador = null, idStatus = 1 WHERE idChamado = ?",(idchamado,))
+        conn.commit()
+        return jsonify({"message": "Chamado desatribuido com sucesso!"}), 200
+    except pyodbc.Error as e:
+        return jsonify({"message": f"Erro ao desatribuir chamado! {str(e)}"}), 500
+    finally:
+        cursor.close()
+
+@app.route('/finalizarChamado', methods=['POST'])
+@requer_login
+def finalizarChamado():
     data = request.get_json()
     idchamado = data.get('idchamado')
     matricula = data.get('matricula')
     
     cursor = conn.cursor()
+    cursor.execute("SELECT idStatus FROM Chamados WHERE idChamado = ?", (idchamado,))
+    idStatus = cursor.fetchone()
+    if idStatus == 3:
+        return jsonify({"message": "Já finalizado!"}), 400
     cursor.execute("SELECT idUsuario FROM Usuario WHERE matricula = ?", (matricula,))
     idUsuario = cursor.fetchone()
-    print('teste1')
-    print(idUsuario[0])
+    print('antes do update')
     print(idchamado)
+    print(idUsuario)
     try:
-        cursor.execute("UPDATE Chamados SET idOperador = ?, idStatus = 2 WHERE idChamado = ?",(idUsuario[0], idchamado,))
+        cursor.execute("UPDATE Chamados SET idOperador = ?, idStatus = 3 WHERE idChamado = ?",(idUsuario[0], idchamado,))
         conn.commit()
-        print('teste2')
-        return jsonify({"message": "Chamado atribuido com sucesso!"}), 200
+        print('depois do update')
+        return jsonify({"message": "Chamado finalizado com sucesso!"}), 200
     except pyodbc.Error as e:
-        return jsonify({"message": f"Erro ao atribuir chamado! {str(e)}"}), 500
+        return jsonify({"message": f"Erro ao finalizar chamado! {str(e)}"}), 500
     finally:
         cursor.close()
 
